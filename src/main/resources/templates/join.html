@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http//www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="/layouts/default">
+
+<div layout:fragment="content">
+
+    <div class="form-group" style="margin:6% 40%">
+        <label class="form-label mt-4">회원가입</label>
+        <!--<div class="form-group">
+            <label class="col-form-label mt-4" for="inputDefault">Name</label>
+            <input type="text" class="form-control" placeholder="이름" id="inputDefault">
+        </div>
+        <div class="form-group">
+            <label class="col-form-label mt-4" for="inputDefault">Email</label>
+            <input type="email" class="form-control" placeholder="abcd@nave.com">
+        </div>
+        <div class="form-group">
+            <label class="col-form-label mt-4" for="inputDefault">Password</label>
+            <input type="password" class="form-control" placeholder="영문숫자 혼합 8자리 이상" >
+        </div>
+        <div class="form-group">
+            <label class="col-form-label mt-4" for="inputDefault">Phone Number</label>
+            <input type="text" class="form-control" placeholder="-빼고 입력해주세요">
+        </div>
+        <fieldset class="form-group">
+            <label class="col-form-label mt-4" for="inputDefault">Gender</label>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="man" id="optionsRadios1" value="man" checked="">
+                <label class="form-check-label" for="optionsRadios1">
+                    Man
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="woman" id="optionsRadios2" value="woman">
+                <label class="form-check-label" for="optionsRadios2">
+                    Wonman
+                </label>
+            </div>
+        </fieldset>
+            <div class="form-group">
+                <label class="col-form-label mt-4" for="inputDefault">Address</label>
+                <input type="text" class="form-control" placeholder="주소">
+                <input type="text" class="form-control" placeholder="상세주소">
+            </div>-->
+        <div style="display: flex;">
+            <div class="form-floating mb-3" style="width:67%; margin-right: 4%">
+                <input type="text" class="form-control" id="floatingInput" placeholder="ID">
+                <label for="floatingInput">ID</label>
+            </div>
+            <button type="button" class="btn btn-light" style="height:5%;margin-top: 4%; font-size: 14px">중복확인</button>
+        </div>
+
+        <div class="form-floating mb-3">
+            <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+            <label for="floatingPassword">Password</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control"  placeholder="-제외하고 입력">
+            <label for="floatingInput">Phone Number</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="email" class="form-control" placeholder="abcde@example.com">
+            <label for="floatingInput">Email</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" placeholder="주민번호 앞자리 6자">
+            <label for="floatingInput">Birth</label>
+        </div>
+        <fieldset class="form-group" style="margin-top: -12%">
+            <label class="col-form-label mt-4" >Gender</label>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="optionsRadios" id="optionsRadios1" value="man" checked="">
+                <label class="form-check-label" for="optionsRadios1">
+                    Man
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="optionsRadios" id="optionsRadios2" value="woman">
+                <label class="form-check-label" for="optionsRadios2">
+                    Woman
+                </label>
+            </div>
+        </fieldset>
+
+        <button type="button" class="btn btn-light" style="margin-top: 4%; width:100%">가입하기</button>
+
+
+    </div>
+
+</div>
+</html>

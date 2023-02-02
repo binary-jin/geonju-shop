@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http//www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="/layouts/default">
+
+<div layout:fragment="content">
+
+    <div class="form-group" style="margin:6% 40%">
+        <label class="form-label mt-4">로그인</label>
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" id="floatingInput" placeholder="ID">
+            <label for="floatingInput">ID</label>
+        </div>
+        <div class="form-floating">
+            <input type="password" class="form-control" id="floatingPassword" placeholder="Password">
+            <label for="floatingPassword">Password</label>
+        </div>
+        <button type="submit" class="btn btn-light" style="margin-top: 4%; width:100%">로그인</button>
+
+        <div style="margin-top:5%">
+            <a href="/geonju/join" style="text-decoration: none; color: black; margin-right: 40%; font-size: 5px">회원가입</a>
+            <!--<span style="margin-right: 12%; color: gray">|</span>-->
+            <a href="/geonju/findid" style="text-decoration: none; color:black; font-size: 5px">아이디 찾기</a>
+            <span style="margin: 0% 3%; color: gray">|</span>
+            <a href="/geonju/findpwd" style="text-decoration: none; color:black; font-size: 5px">비밀번호 찾기</a>
+
+        </div>
+    </div>
+
+
+</div>
+</html>
