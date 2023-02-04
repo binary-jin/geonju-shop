@@ -33,7 +33,7 @@ public class Member {
     @Column(nullable = false, length = 15)
     private String memberName; //사용자 이름
 
-    @Column(nullable = false, length = 15)
+    @Column(nullable = false, length = 11)
     private String memberPhone; //사용자 전화번호
 
     @Column(nullable = false, length = 30)
