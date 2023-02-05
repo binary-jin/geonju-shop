@@ -24,10 +24,10 @@ public class Member {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id; //pk, Auto_increment
 
-    @Column(nullable = false, length = 30)
+    @Column(nullable = false, length = 20)
     private String memberId; //사용자 아이디
 
-    @Column(nullable = false, length = 30)
+    @Column(nullable = false, length = 20)
     private String memberPwd; //사용자 비밀번호
 
     @Column(nullable = false, length = 15)
@@ -39,19 +39,19 @@ public class Member {
     @Column(nullable = false, length = 30)
     private String memberEmail; //사용자 이메일
 
-    @Column(nullable = false, length = 6)
-    private int memberBirth; //사용자 생년월일
+    @Column(nullable = false)
+    private String memberBirth; //사용자 생년월일
 
     @Column(nullable = false)
-    @Enumerated(EnumType.STRING)
-    private GenderType genderType;
+    //@Enumerated(EnumType.STRING)
+    private String genderType;
 
     @Column(nullable = false)
     @Enumerated(EnumType.STRING) //enum을 저장하는 방식
     private MemberType memberType;
 
-    @CreationTimestamp
-    private Timestamp createDate;   // 가입일
+//    @CreationTimestamp
+//    private Timestamp createDate;   // 가입일
 
     public static Member createMember(MemberFormDTO memberFormDTO, PasswordEncoder passwordEncoder) {
         Member member = new Member();
