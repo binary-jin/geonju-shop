@@ -36,10 +36,9 @@ public class Member {
     @Column(nullable = false, length = 11)
     private String memberPhone; //사용자 전화번호
 
-    @Column(nullable = false, length = 30)
+    @Column(length = 30)
     private String memberEmail; //사용자 이메일
 
-    @Column(nullable = false)
     private String memberBirth; //사용자 생년월일
 
     @Column(nullable = false)

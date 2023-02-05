@@ -22,8 +22,8 @@ public class MemberFormDTO {
     private String memberId; //회원 아이디
 
     @NotBlank(message = "필수 입력 값입니다")
-    @Pattern(regexp="(?=.*[0-9])(?=.*[a-z])(?=.*\\W)(?=\\S+$).{6,20}",
-            message = "비밀번호는 영문자와 숫자, 특수기호가 적어도 1개 이상 포함된 6자~20자의 비밀번호여야 합니다.")
+    @Pattern(regexp="[a-zA-Z1-9]{8,20}",
+            message = "비밀번호는 영어와 숫자로 포함해서 8~20자리 이내로 입력해주세요.")
     private String memberPwd; //회원 비밀번호
 
     @NotBlank(message = "필수 입력 값입니다")
@@ -33,7 +33,6 @@ public class MemberFormDTO {
     private String memberPhone; //회원 전화번호
 
     @Email(message = "이메일 형식으로 입력해주세요")
-    @NotBlank(message = "필수 입력 값입니다")
     private String memberEmail;
 
     private String memberBirth;
