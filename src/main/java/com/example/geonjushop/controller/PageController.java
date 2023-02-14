@@ -18,9 +18,9 @@ public class PageController {
         return "login";
     }
 
-    @GetMapping("/join")
-    public String join() {
-        return "join";
-    }
+//    @GetMapping("/join")
+//    public String join() {
+//        return "join";
+//    }
 
 }

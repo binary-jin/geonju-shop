@@ -23,14 +23,16 @@ public class MemberController {
     private final MemberService memberService;
 
     //회원가입 페이지로 이동
-    @GetMapping("/join")
-    public String join(MemberFormDTO memberFormDTO, Model model) {
-        model.addAttribute("MemberFormDto", memberFormDTO);
+    //get 요청으로 회원가입 페이지 요청할 경우 memberformdto 객체 같이 넘김
+    @GetMapping("/joinform")
+    public String join(Model model) {
+        model.addAttribute("MemberFormDto", new MemberFormDTO());
         return "join";
     }
 
     //회원가입 폼 작성
-    @PostMapping("/join")
+    //post 요청으로 넘어온 회원가입 정보를 memberformdto 객체로 받음
+    @PostMapping("/joinform")
     public String memberJoin(@Valid MemberFormDTO memberFormDTO, BindingResult bindingResult, Model model){
 
         if(bindingResult.hasErrors()) {
