@@ -13,10 +13,7 @@ import org.hibernate.validator.constraints.Length;
 
 @Getter
 @Setter
-public class MemberFormDTO {
-
-    @GeneratedValue //auto increase
-    private Long id; //회원 고유 번호
+public class MemberFormDTO { //회원가입 화면으로부터 넘어오는 정보 담을 객체
 
     @NotBlank(message = "필수 입력 값입니다")
     private String memberId; //회원 아이디
@@ -35,11 +32,9 @@ public class MemberFormDTO {
     @Email(message = "이메일 형식으로 입력해주세요")
     private String memberEmail;
 
-    private String memberBirth;
+    //private String memberBirth;
 
-    @NotEmpty (message = "필수 선택입니다")
-    private String memberGenderType;
-
-    private MemberType memberType;
+//    @NotEmpty (message = "필수 선택입니다")
+//    private String memberGenderType;
 
 }
