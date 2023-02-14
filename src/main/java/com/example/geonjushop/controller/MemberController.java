@@ -3,16 +3,12 @@ package com.example.geonjushop.controller;
 import com.example.geonjushop.dto.MemberFormDTO;
 import com.example.geonjushop.entity.Member;
 import com.example.geonjushop.service.MemberService;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequiredArgsConstructor
@@ -26,14 +22,15 @@ public class MemberController {
     //get 요청으로 회원가입 페이지 요청할 경우 memberformdto 객체 같이 넘김
     @GetMapping("/joinform")
     public String join(Model model) {
-        model.addAttribute("MemberFormDto", new MemberFormDTO());
+        model.addAttribute("MemberFormDTO", new MemberFormDTO());
         return "join";
     }
 
     //회원가입 폼 작성
     //post 요청으로 넘어온 회원가입 정보를 memberformdto 객체로 받음
     @PostMapping("/joinform")
-    public String memberJoin(@Valid MemberFormDTO memberFormDTO, BindingResult bindingResult, Model model){
+    @ResponseBody
+    public String memberJoin(@RequestBody MemberFormDTO memberFormDTO, BindingResult bindingResult, Model model){
 
         if(bindingResult.hasErrors()) {
             return "join";

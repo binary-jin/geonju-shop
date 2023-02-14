@@ -6,6 +6,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Optional;
+
 @Service
 @RequiredArgsConstructor
 @Transactional
@@ -21,9 +23,8 @@ public class MemberService {
 
     //회원 중복 검사
     public void validateDuplicateMember(Member member) {
-        Member findMember = memberRepository.findByMemberId(member.getMemberId());
-
-        if(findMember != null ) {
+        Optional<Member> findMemberOptional = memberRepository.findByMemberId(member.getMemberId());
+        if (findMemberOptional.isPresent()) {
             throw new IllegalStateException("이미 가입된 회원입니다.");
         }
     }

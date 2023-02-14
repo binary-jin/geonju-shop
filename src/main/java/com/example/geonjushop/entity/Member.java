@@ -19,12 +19,8 @@ import java.sql.Timestamp;
 @Getter
 @Setter
 @ToString
+//@Data
 public class Member { //회원 정보 저장
-
-    @Id
-    @Column(name="id")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id; //pk, Auto_increment
 
     @Column(nullable = false, length = 20, unique = true)
     private String memberId; //사용자 아이디
@@ -47,9 +43,12 @@ public class Member { //회원 정보 저장
     //@Enumerated(EnumType.STRING)
     //private String genderType;  //사용자 성별
 
-    @Column(nullable = false)
-    @Enumerated(EnumType.STRING) //enum을 저장하는 방식
-    private MemberType memberType;
+//    @Column(nullable = false)
+//    @Enumerated(EnumType.STRING) //enum을 저장하는 방식
+//    private MemberType memberType;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int memberCount; //Auto_increment
 
 //    @CreationTimestamp
 //    private Timestamp createDate;   // 가입일
@@ -66,7 +65,7 @@ public class Member { //회원 정보 저장
         member.setMemberEmail(memberFormDTO.getMemberEmail());
         //member.setMemberBirth(memberFormDTO.getMemberBirth());
         //member.setGenderType(memberFormDTO.getMemberGenderType());
-        member.setMemberType(MemberType.USER);
+        //member.setMemberType(MemberType.USER);
 
         return member;
     }
