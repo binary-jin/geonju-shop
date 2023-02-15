@@ -6,8 +6,8 @@
 <!-- 사용자 CSS 추가-->
 <th:block layout:fragment="css">
     <style>
-        .fieldError {
-            color: #bd2130;
+        .error{
+            color : red;
         }
     </style>
 </th:block>
@@ -20,7 +20,7 @@
 
 <div layout:fragment="content">
     <p style="text-align: center">회원가입</p>
-    <form action="/geonju/joinform" role="form" method="post" th:object="${MemberFormDTO}">
+    <form id="joinForm" action="/geonju/joinform" role="form" method="post" autocomplete="off" th:object="${MemberFormDTO}">
     <div class="form-group" style="margin:3% 40%">
         <label class="form-label mt-4">기본정보</label>
         <div style="display: flex;">
@@ -29,17 +29,21 @@
                 <label for="id">ID</label>
             </div>
             <button type="button" class="btn btn-light" style="height:5%;margin-top: 4%; font-size: 14px">중복확인</button>
-
         </div>
-        <div id="idError" class="error"></div>
+        <div id="idError" class="invalid-feedback"></div>
 
+        <!--<div class="form-floating mb-3">
+            <input id="pwd" type="password" class="form-control" placeholder="Password">
+            <label for="pwd">Password</label>
+        </div>
+        <div id="pwdError" class="error"></div>-->
         <div class="form-floating mb-3">
             <input id="pwd" type="password" class="form-control" placeholder="Password">
             <label for="pwd">Password</label>
         </div>
-        <div id="pwdError" class="error"></div>
+
         <div class="form-floating mb-3">
-            <input id="name" type="text" class="form-control" autocomplete="off" placeholder="이름 입력">
+            <input id="name" type="text" class="form-control" placeholder="이름 입력">
             <label for="name">Name</label>
             <div id="nameError" class="error"></div>
         </div>
@@ -65,7 +69,7 @@
                 </div>
             </div>
         </fieldset>
-        <hr style="color: gray; margin-bottom: -2%; margin-top: 6%">-->
+        <!--<hr style="color: gray; margin-bottom: -2%; margin-top: 6%">-->
         <label class="form-label mt-4">추가정보 &nbsp;<sapn style="color: gray; font-size: 13px">(선택)</sapn></label>
         <div class="form-floating mb-3">
             <input id="email" type="email" class="form-control" autocomplete="off" placeholder="abcde@example.com">
@@ -176,7 +180,7 @@
                 </select>
             </div>
         </div>-->
-        <button type="button" class="btn btn-light" style="margin-top: 8%; width:100%" onclick="btnJoin()">가입하기</button>
+        <button type="submit" class="btn btn-light" style="margin-top: 8%; width:100%" >가입하기</button>
     </div>
 
         <!--<script>

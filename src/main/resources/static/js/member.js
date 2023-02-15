@@ -24,7 +24,7 @@
         };*/
 
 function btnJoin() {
-    const id = $('#id').val();
+    /*const id = $('#id').val();
     const pwd = $('#pwd').val();
     const name = $('#name').val();
     const phone = $('#phone').val();
@@ -66,15 +66,87 @@ function btnJoin() {
     if(!gender_man && !gender_woman) {
         $('#genderError').val().innerHTML="성별을 선택해주세요"
         check = false
+    }*/
+
+    // const id = document.getElementById("id").value
+    // const pwd = document.getElementById("pwd").value
+    // const name = document.getElementById("name").value
+    // const phone = document.getElementById("phone").value
+    // const gender_man = document.getElementById("gender_man").value
+    // const gender_woman = document.getElementById("gender_woman").value
+    //
+    // let check = true;
+    //
+    // //아이디
+    // if(id===""){
+    //     document.getElementById("idError").innerHTML="아이디를 입력해주세요."
+    //     check = false
+    // }else{
+    //     document.getElementById("idError").innerHTML=""
+    // }
+    //
+    // //비밀번호
+    // // if(pwd===""){
+    // //     document.getElementById("pwdError").innerHTML="비밀번호를 입력해주세요."
+    // //     check = false
+    // // }else{
+    // //     document.getElementById("pwdError").innerHTML=""
+    // // }
+    //
+    // //이름
+    // if(name===""){
+    //     document.getElementById("nameError").innerHTML="이름을 입력해주세요."
+    //     check = false
+    // }else{
+    //     document.getElementById("nameError").innerHTML=""
+    // }
+    //
+    // //폰 번호
+    // if(phone===""){
+    //     document.getElementById("phoneError").innerHTML="휴대폰 번호를 입력해주세요."
+    //     check = false
+    // }else {
+    //     document.getElementById("phoneError").innerHTML = ""
+    // }
+    //
+    // //성별
+    // if(!gender_man && !gender_woman){
+    //     document.getElementById("genderError").innerHTML="성별을 선택해주세요."
+    //     check = false
+    // }else{
+    //     document.getElementById("genderError").innerHTML=""
+    // }
+    //
+    // if(check) {
+    //     document.getElementById("idError").innerHTML=""
+    //     document.getElementById("pwdError").innerHTML=""
+    //     document.getElementById("nameError").innerHTML=""
+    //     document.getElementById("phoneError").innerHTML=""
+    //     document.getElementById("genderError").innerHTML=""
+    //
+    //     alert("가입 완료");
+    // }
+
+    $(document).ready(function() {
+        $('#joinForm').submit(function() {
+            if (inputValid() === false) {
+                return false;
+            }
+        });
+    });
+
+    function inputValid() {
+        if ($('#pwd')==='') {
+            $('#status')
+                .attr('value', '비밀번호를 입력해주세요.')
+                .addClass('has-danger');
+            return false;
+        }
+        $('#status')
+            .attr('value', '성공')
+            .removeClass('has-danger')
+            .addClass('has-success');
+        return true;
     }
 
-    if(check) {
-        $('#idError').val().innerHTML=""
-        $('#pwdError').val().innerHTML=""
-        $('#nameError').val().innerHTML=""
-        $('#phoneError').val().innerHTML=""
-        $('#genderError').val().innerHTML=""
-
-        alert("가입 완료");
-    }
 }

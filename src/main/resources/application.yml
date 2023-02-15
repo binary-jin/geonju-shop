@@ -7,3 +7,11 @@ spring:
     url: jdbc:mysql://localhost:3306/geonjushop?serverTimezone=Asia/Seoul&characterEncoding=UTF-8
     username: root
     password:
+  devtools:
+    livereload:
+      enabled: true
+    restart:
+      enabled: true
+    thymeleaf:
+      cache: false
+

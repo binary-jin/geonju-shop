@@ -23,4 +23,9 @@ public class PageController {
 //        return "join";
 //    }
 
+    @GetMapping("/jointest")
+    public String jointest() {
+        return "joinTest";
+    }
+
 }
