@@ -1,152 +1,114 @@
-/*let index = {
-    init: function() {
-        $("#join-save").on("click", () => {
-            this.save();
-        });
-    }
-}
+//연도 설정
+$(document).ready(function(){
+    let date = new Date();
+    let selYear = date.getFullYear();
 
+    //현재년도를 기준으로 호출
+    getYears(selYear);
 
-    save: function(){
-        //alert('user의 save함수 호출됨');
-        let data = {
-            name: $("#name").val(),
-            nickname: $("#nickname").val(),
-            username: $("#username").val(),
-            pw: $("#pw").val(),
-            phone: $("#phone").val(),
-            address: $("#address").val(),
-            email: $("#email").val(),
-            gender: $("#gender").val(),
-            birth: $("#birth").val(),
-            bank: $("#bank").val(),
-            account: $("#account").val(),
-        };*/
+    //현재년도를 select 함
+    $('#year').val(selYear);
 
-function btnJoin() {
-    /*const id = $('#id').val();
-    const pwd = $('#pwd').val();
-    const name = $('#name').val();
-    const phone = $('#phone').val();
-    const gender_man = $('#gender_man').val();
-    const gender_woman = $('#gender_woman').val();
-
-    if(id === '') {
-        $('#idError').val().innerHTML="아이디를 입력해주세요"
-        $('#id').focus()
-        check = false
-    }
-
-    if(pwd === '') {
-        $('#pwdError').val().innerHTML="비밀번호를 입력해주세요"
-        $('#pwd').focus()
-        check = false
-    } else if (!(pwd.includes("[a-zA-Z1-9]"))){
-        $('#pwdError').val().innerHTML="비밀번호는 영어와 숫자로 포함해서 8~20자리 이내로 입력해주세요."
-        $('#pwd').focus()
-        check = false
-    }
-
-    if(name === '') {
-        $('#nameError').val().innerHTML="이름을 입력해주세요"
-        $('#name').focus()
-        check = false
-    }
-
-    if(phone === '') {
-        $('#phoneError').val().innerHTML="휴대폰 번호를 입력해주세요"
-        $('#phone').focus()
-        check = false
-    } else if (phone.includes("-") ){
-        $('#phoneError').val().innerHTML="-은 빼고 입력해주세요"
-        $('#phone').focus()
-        check = false
-    }
-
-    if(!gender_man && !gender_woman) {
-        $('#genderError').val().innerHTML="성별을 선택해주세요"
-        check = false
-    }*/
-
-    // const id = document.getElementById("id").value
-    // const pwd = document.getElementById("pwd").value
-    // const name = document.getElementById("name").value
-    // const phone = document.getElementById("phone").value
-    // const gender_man = document.getElementById("gender_man").value
-    // const gender_woman = document.getElementById("gender_woman").value
-    //
-    // let check = true;
-    //
-    // //아이디
-    // if(id===""){
-    //     document.getElementById("idError").innerHTML="아이디를 입력해주세요."
-    //     check = false
-    // }else{
-    //     document.getElementById("idError").innerHTML=""
-    // }
-    //
-    // //비밀번호
-    // // if(pwd===""){
-    // //     document.getElementById("pwdError").innerHTML="비밀번호를 입력해주세요."
-    // //     check = false
-    // // }else{
-    // //     document.getElementById("pwdError").innerHTML=""
-    // // }
-    //
-    // //이름
-    // if(name===""){
-    //     document.getElementById("nameError").innerHTML="이름을 입력해주세요."
-    //     check = false
-    // }else{
-    //     document.getElementById("nameError").innerHTML=""
-    // }
-    //
-    // //폰 번호
-    // if(phone===""){
-    //     document.getElementById("phoneError").innerHTML="휴대폰 번호를 입력해주세요."
-    //     check = false
-    // }else {
-    //     document.getElementById("phoneError").innerHTML = ""
-    // }
-    //
-    // //성별
-    // if(!gender_man && !gender_woman){
-    //     document.getElementById("genderError").innerHTML="성별을 선택해주세요."
-    //     check = false
-    // }else{
-    //     document.getElementById("genderError").innerHTML=""
-    // }
-    //
-    // if(check) {
-    //     document.getElementById("idError").innerHTML=""
-    //     document.getElementById("pwdError").innerHTML=""
-    //     document.getElementById("nameError").innerHTML=""
-    //     document.getElementById("phoneError").innerHTML=""
-    //     document.getElementById("genderError").innerHTML=""
-    //
-    //     alert("가입 완료");
-    // }
-
-    $(document).ready(function() {
-        $('#joinForm').submit(function() {
-            if (inputValid() === false) {
-                return false;
-            }
-        });
+    //바뀐년도를 기준으로 다시 option 세팅
+    $('#year').change(function() {
+        let chgYear = $(this).val();
+        getYears(chgYear);
+        $('#year').val(chgYear);
     });
+});
 
-    function inputValid() {
-        if ($('#pwd')==='') {
-            $('#status')
-                .attr('value', '비밀번호를 입력해주세요.')
-                .addClass('has-danger');
-            return false;
-        }
-        $('#status')
-            .attr('value', '성공')
-            .removeClass('has-danger')
-            .addClass('has-success');
-        return true;
+function getYears(getY) {
+
+    //기존 option을 삭제
+    //$("#year option").remove();
+
+    //올해 기준으로 -70부터 올해까지 보여줌
+    let stY = Number(getY)-70;
+    let enY = Number(getY);
+    for(let y = stY; y <= enY; y++) {
+        $('#year').append("<option value='"+y+"'>" + y +"</option>");
+    }
+}
+
+function getBirth() {
+    const year = $("#year option:selected").text();
+    const month = $("#month option:selected").text();
+    const day = $("#day option:selected").text();
+
+    return year.concat('-').concat(month).concat('-').concat(day);
+}
+
+function getGender() {
+    const gender = document.getElementsByName("gender");
+    const selected = Array.from(gender).find(radio => radio.checked);
+
+    return selected
+}
+
+//입력 값 받기
+function checkValid(id, pwd, name, phone) {
+
+    if (id === '') {
+        alert('아이디를 입력해주세요.');
+        $('#id').focus();
+        return false;
     }
 
+    if (pwd === '') {
+        alert('비밀번호를 입력해주세요');
+        $('#pwd').focus();
+        return false;
+    }
+
+    if (name === '') {
+        alert('이름을 입력해주세요');
+        $('#name').focus();
+        return false;
+    }
+
+    if (phone === '') {
+        alert('핸드폰 번호를 입력해주세요');
+        $('#phone').focus();
+        return false;
+    }
+
+    return true;
 }
+
+$( '#btnJoin' ).click( function() { //회원가입 버튼 누르면 값 가져와서
+    let id = $('#id').val();
+    let pwd = $('#pwd').val();
+    let name = $('#name').val();
+    let phone = $('#phone').val();
+    let email = $('#email').val();
+
+    if (checkValid(id, pwd, name, phone, email) === true) { //위의 조건들 다 충족하면 true로 되어서 if문 실행, ajax 실행
+        const data = {
+            memberId: id,
+            memberPwd: pwd,
+            memberName: name,
+            memberPhone: phone,
+            memberEmail: email,
+            memberBirth: getBirth(), //위 함수에서 셀렉트 박스 값 가져옴
+            memberGender: getGender()
+        }
+
+
+        $.ajax({
+            url: '/geonju/joinform',
+            type: 'POST',
+            contentType: 'application/json; charset=utf-8',
+            data: JSON.stringify(data),
+            dataType: 'json',
+            success: function (res) { //성공 시 성공 알러트+메인 화면으로 넘어감
+                alert("join success");
+                location.href = "/geonju/"
+            },
+            error: function (err) { //실패 시 실패 알러트+에러 알러트
+                alert("회원가입 실패");
+                alert(JSON.stringify(err));
+            }
+        })
+    }
+});
+

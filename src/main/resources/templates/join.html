@@ -10,17 +10,23 @@
             color : red;
         }
     </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css">
+    <link rel="stylesheet" type="text/css" href="https://npmcdn.com/flatpickr/dist/themes/material_orange.css">
+
 </th:block>
 
 <!-- 사용자 스크립트 추가-->
 <th:block layout:fragment="script">
     <script src="/js/member.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+    <script src="https://npmcdn.com/flatpickr/dist/l10n/ko.js"></script>
+
 </th:block>
 
 
 <div layout:fragment="content">
     <p style="text-align: center">회원가입</p>
-    <form id="joinForm" action="/geonju/joinform" role="form" method="post" autocomplete="off" th:object="${MemberFormDTO}">
+    <form id="joinForm" action="/geonju/joinform" role="form" method="post" th:object="${MemberFormDTO}">
     <div class="form-group" style="margin:3% 40%">
         <label class="form-label mt-4">기본정보</label>
         <div style="display: flex;">
@@ -30,7 +36,7 @@
             </div>
             <button type="button" class="btn btn-light" style="height:5%;margin-top: 4%; font-size: 14px">중복확인</button>
         </div>
-        <div id="idError" class="invalid-feedback"></div>
+        <div id="idError" class="error"></div>
 
         <!--<div class="form-floating mb-3">
             <input id="pwd" type="password" class="form-control" placeholder="Password">
@@ -41,6 +47,7 @@
             <input id="pwd" type="password" class="form-control" placeholder="Password">
             <label for="pwd">Password</label>
         </div>
+        <div id="pwdError" class="error"></div>
 
         <div class="form-floating mb-3">
             <input id="name" type="text" class="form-control" placeholder="이름 입력">
@@ -69,6 +76,7 @@
                 </div>
             </div>
         </fieldset>
+        <div id="genderError" class="error"></div>
         <!--<hr style="color: gray; margin-bottom: -2%; margin-top: 6%">-->
         <label class="form-label mt-4">추가정보 &nbsp;<sapn style="color: gray; font-size: 13px">(선택)</sapn></label>
         <div class="form-floating mb-3">
@@ -76,150 +84,67 @@
             <label for="email">Email</label>
             <div id="emailError" class="error"></div>
         </div>
-        <!--<div class="form-floating mb-3">
-            <input type="text" class="form-control" placeholder="주민번호 앞자리 6자">
-            <label for="floatingInput">Birth</label>
-        </div>-->
-        <!--<div class="form-group" style="margin-top: -10%">
-            <label for="year" class="form-label mt-4">Birth</label>
+
+        <div class="form-group" style="margin-top: -10%">
+            <label class="form-label mt-4">Birth</label>
             <div class="birth" style="display: flex">
-                <select class="form-select" id="year" style="width:40%; margin-right: 4%">
-                    <option>Year</option>
-                    <option>1970</option>
-                    <option>1971</option>
-                    <option>1972</option>
-                    <option>1973</option>
-                    <option>1974</option>
-                    <option>1975</option>
-                    <option>1976</option>
-                    <option>1977</option>
-                    <option>1978</option>
-                    <option>1979</option>
-                    <option>1980</option>
-                    <option>1981</option>
-                    <option>1982</option>
-                    <option>1983</option>
-                    <option>1984</option>
-                    <option>1985</option>
-                    <option>1986</option>
-                    <option>1987</option>
-                    <option>1988</option>
-                    <option>1989</option>
-                    <option>1990</option>
-                    <option>1991</option>
-                    <option>1992</option>
-                    <option>1993</option>
-                    <option>1994</option>
-                    <option>1995</option>
-                    <option>1996</option>
-                    <option>1997</option>
-                    <option>1998</option>
-                    <option>1999</option>
-                    <option>2000</option>
-                    <option>2001</option>
-                    <option>2002</option>
-                    <option>2003</option>
-                    <option>2004</option>
-                    <option>2005</option>
-                    <option>2006</option>
-                    <option>2007</option>
-                    <option>2008</option>
-                    <option>2009</option>
-                    <option>2010</option>
-                    <option>2011</option>
-                    <option>2012</option>
-                </select>
-                <select class="form-select" style="width:30%; margin-right: 4%">
-                    <option>Month</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                    <option>10</option>
-                    <option>11</option>
-                    <option>12</option>
-                </select>
-                <select class="form-select" style="width:30%">
-                    <option>Day</option>
-                    <option>1</option>
-                    <option>2</option>
-                    <option>3</option>
-                    <option>4</option>
-                    <option>5</option>
-                    <option>6</option>
-                    <option>7</option>
-                    <option>8</option>
-                    <option>9</option>
-                    <option>10</option>
-                    <option>11</option>
-                    <option>12</option>
-                    <option>13</option>
-                    <option>14</option>
-                    <option>15</option>
-                    <option>16</option>
-                    <option>17</option>
-                    <option>18</option>
-                    <option>19</option>
-                    <option>20</option>
-                    <option>21</option>
-                    <option>22</option>
-                    <option>23</option>
-                    <option>24</option>
-                    <option>25</option>
-                    <option>26</option>
-                    <option>27</option>
-                    <option>28</option>
-                    <option>29</option>
-                    <option>30</option>
-                    <option>31</option>
-                </select>
+                <select id="year" class="form-select" style="width:40%; margin-right: 4%">
+
+                 </select>
+                 <select id="month" class="form-select" style="width:30%; margin-right: 4%">
+                     <option disabled>Month</option>
+                     <option>1</option>
+                     <option>2</option>
+                     <option>3</option>
+                     <option>4</option>
+                     <option>5</option>
+                     <option>6</option>
+                     <option>7</option>
+                     <option>8</option>
+                     <option>9</option>
+                     <option>10</option>
+                     <option>11</option>
+                     <option>12</option>
+                 </select>
+                 <select id="day" class="form-select" style="width:30%">
+                     <option disabled>Day</option>
+                     <option>1</option>
+                     <option>2</option>
+                     <option>3</option>
+                     <option>4</option>
+                     <option>5</option>
+                     <option>6</option>
+                     <option>7</option>
+                     <option>8</option>
+                     <option>9</option>
+                     <option>10</option>
+                     <option>11</option>
+                     <option>12</option>
+                     <option>13</option>
+                     <option>14</option>
+                     <option>15</option>
+                     <option>16</option>
+                     <option>17</option>
+                     <option>18</option>
+                     <option>19</option>
+                     <option>20</option>
+                     <option>21</option>
+                     <option>22</option>
+                     <option>23</option>
+                     <option>24</option>
+                     <option>25</option>
+                     <option>26</option>
+                     <option>27</option>
+                     <option>28</option>
+                     <option>29</option>
+                     <option>30</option>
+                     <option>31</option>
+                 </select>
             </div>
-        </div>-->
-        <button type="submit" class="btn btn-light" style="margin-top: 8%; width:100%" >가입하기</button>
+        </div>
+        <button id="btnJoin" type="submit" class="btn btn-light" style="margin-top: 8%; width:100%" onclick="btnJoin()" >가입하기</button>
     </div>
 
-        <!--<script>
-            function btnJoin() {
-                const id = $('#memberId').val();
-                if (id === '') {
-                    alert('아이디를 입력해 주세요.');
-                    $('#memberId').focus();
-                }
-
-                const pwd = $('#memberPwd').val();
-                const name = $('#memberName').val();
-                const phone = $('#memberPhone').val();
-                const email = $('#email').val();
-
-                const data = {
-                    memberId: id,
-                    memberPwd: pwd,
-                    memberName: name,
-                    memberPhone: phone,
-                    memberEmail: email
-                }
-
-                $.ajax({
-                    url: '/geonju/joinform',
-                    type: 'POST',
-                    contentType: 'application/json',
-                    data:JSON.stringify(data),
-                    dataType: 'json',
-                    success : function (res) {
-                        alert("join success");
-
-                    },
-                    error : function (err) {
-                        alert(err.responseJSON.text);
-                    }
-                })
-            }
-        </script>-->
     </form>
     </div>
 
