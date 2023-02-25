@@ -4,6 +4,7 @@ import com.example.geonjushop.constant.GenderType;
 import com.example.geonjushop.constant.MemberType;
 import com.example.geonjushop.dto.MemberFormDTO;
 import jakarta.persistence.*;
+import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -13,6 +14,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
 import java.sql.Timestamp;
+import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "member")
@@ -22,7 +24,8 @@ import java.sql.Timestamp;
 //@Data
 public class Member { //회원 정보 저장
 
-    @Column(nullable = false, length = 20, unique = true)
+    @Id
+    @Column(nullable = false, length = 20)
     private String memberId; //사용자 아이디
 
     @Column(nullable = false, length = 20)
@@ -37,22 +40,21 @@ public class Member { //회원 정보 저장
     @Column(length = 30)
     private String memberEmail; //사용자 이메일
 
-    //private String memberBirth; //사용자 생년월일
+    private String memberBirth; //사용자 생년월일
 
     //@Column(nullable = false)
     //@Enumerated(EnumType.STRING)
-    //private String genderType;  //사용자 성별
+    private String genderType;  //사용자 성별
 
 //    @Column(nullable = false)
 //    @Enumerated(EnumType.STRING) //enum을 저장하는 방식
-//    private MemberType memberType;
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private MemberType memberType;
+
+    //@GeneratedValue(strategy = GenerationType.IDENTITY)
     private int memberCount; //Auto_increment
 
 //    @CreationTimestamp
 //    private Timestamp createDate;   // 가입일
-
 
     //Member 객체를 생성하기 위해 Member 객체 안에 createMember() 메소드 생성
     public static Member createMember(MemberFormDTO memberFormDTO, PasswordEncoder passwordEncoder) {
@@ -63,9 +65,10 @@ public class Member { //회원 정보 저장
         member.setMemberName(memberFormDTO.getMemberName());
         member.setMemberPhone(memberFormDTO.getMemberPhone());
         member.setMemberEmail(memberFormDTO.getMemberEmail());
-        //member.setMemberBirth(memberFormDTO.getMemberBirth());
-        //member.setGenderType(memberFormDTO.getMemberGenderType());
-        //member.setMemberType(MemberType.USER);
+        member.setMemberBirth(memberFormDTO.getMemberBirth());
+        member.setGenderType(memberFormDTO.getMemberGenderType());
+        member.setMemberType(MemberType.USER);
+        //member.setCreateDate(LocalDateTime.now());
 
         return member;
     }

@@ -17,13 +17,18 @@ public class MemberService {
 
     //회원가입 저장
     public Member saveMember(Member member) {
-        validateDuplicateMember(member);
+        //validateDuplicateMember(member);
+        Optional<Member> memberOptional = memberRepository.findByMemberId(member.getMemberId());
+        if (memberOptional.isPresent()) {
+            throw new IllegalStateException("이미 가입된 회원입니다.");
+        }
+
         return memberRepository.save(member);
     }
 
     //회원 중복 검사
-    public void validateDuplicateMember(Member member) {
-        Optional<Member> findMemberOptional = memberRepository.findByMemberId(member.getMemberId());
+    public void validateDuplicateMember(String memberId) {
+        Optional<Member> findMemberOptional = memberRepository.findByMemberId(memberId);
         if (findMemberOptional.isPresent()) {
             throw new IllegalStateException("이미 가입된 회원입니다.");
         }

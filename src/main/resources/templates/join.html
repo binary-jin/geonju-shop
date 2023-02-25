@@ -17,6 +17,7 @@
 
 <!-- 사용자 스크립트 추가-->
 <th:block layout:fragment="script">
+
     <script src="/js/member.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
     <script src="https://npmcdn.com/flatpickr/dist/l10n/ko.js"></script>
@@ -26,7 +27,7 @@
 
 <div layout:fragment="content">
     <p style="text-align: center">회원가입</p>
-    <form id="joinForm" action="/geonju/joinform" role="form" method="post" th:object="${MemberFormDTO}">
+    <form id="joinForm" action="/geonju/joinform" role="form" method="post">
     <div class="form-group" style="margin:3% 40%">
         <label class="form-label mt-4">기본정보</label>
         <div style="display: flex;">
@@ -34,7 +35,7 @@
                 <input id="id" type="text" class="form-control" autocomplete="off" placeholder="ID">
                 <label for="id">ID</label>
             </div>
-            <button type="button" class="btn btn-light" style="height:5%;margin-top: 4%; font-size: 14px">중복확인</button>
+            <button type="button" class="btn btn-light" onclick="btnDuplicatedId()" style="height:5%;margin-top: 4%; font-size: 14px">중복확인</button>
         </div>
         <div id="idError" class="error"></div>
 
@@ -142,7 +143,7 @@
                  </select>
             </div>
         </div>
-        <button id="btnJoin" type="submit" class="btn btn-light" style="margin-top: 8%; width:100%" onclick="btnJoin()" >가입하기</button>
+        <button type="button" class="btn btn-light" style="margin-top: 8%; width:100%" onclick="btnJoin()" >가입하기</button>
     </div>
 
     </form>
